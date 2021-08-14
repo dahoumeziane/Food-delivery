@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dahou.fooddelivery.R;
 
 public class DishViewHolder extends RecyclerView.ViewHolder {
-    ImageView dishImage;
-    TextView dishName,dishCategory;
+    public ImageView dishImage;
+    public TextView dishName,dishCategory;
     public DishViewHolder(@NonNull View itemView) {
         super(itemView);
         dishImage = itemView.findViewById(R.id.foodImage);
