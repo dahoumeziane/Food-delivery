@@ -127,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
         firstDish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,SecondActivity.class);
-                startActivity(i);
+                Intent j = new Intent(MainActivity.this,SecondActivity.class);
+                startActivity(j);
 
             }
         });
