@@ -26,6 +26,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/dishName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -37,6 +38,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/dishCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="dish type"

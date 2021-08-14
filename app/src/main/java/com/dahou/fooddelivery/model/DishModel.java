@@ -1,4 +1,4 @@
-package com.dahou.fooddelivery;
+package com.dahou.fooddelivery.model;
 
 public class DishModel {
     private String name,category,address;
