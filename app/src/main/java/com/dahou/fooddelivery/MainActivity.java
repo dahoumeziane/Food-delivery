@@ -2,6 +2,7 @@ package com.dahou.fooddelivery;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -118,6 +119,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 filterDialog.show();
+
+            }
+        });
+
+        ConstraintLayout firstDish = findViewById(R.id.firstDish);
+        firstDish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this,SecondActivity.class);
+                startActivity(i);
 
             }
         });
