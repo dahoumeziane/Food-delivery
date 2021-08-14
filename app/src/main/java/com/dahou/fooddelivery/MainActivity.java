@@ -3,6 +3,8 @@ package com.dahou.fooddelivery;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -17,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dahou.fooddelivery.Adapter.DishHorizontalAdapter;
+import com.dahou.fooddelivery.model.DishModel;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView home_icon , cart_icon , add_icon;
     TextView home_text , cart_text,addTxt;
     ArrayList<BottomBarElement> Elements ;
-    ImageView food;
     TextView filterBtn ;
+    RecyclerView dishList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,14 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        food.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,SecondActivity.class);
-                i.putExtra("data","Passed data from the main activity");
-                startActivity(i);
-            }
-        });
+
 
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,16 +121,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ConstraintLayout firstDish = findViewById(R.id.firstDish);
-        firstDish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent j = new Intent(MainActivity.this,SecondActivity.class);
-                startActivity(j);
+        //Recycler view binding
 
-            }
-        });
-        String test = "test";
+        //Creation of data
+        ArrayList<DishModel> dishes = new ArrayList<>(6);
+        dishes.add(new DishModel("Royal food court","Chinese , Indian food","100-2 south Manchester City avenue",R.drawable.food1,true));
+        dishes.add(new DishModel("Tasty spot","Germaan , Indian food","1028-2 south Manchester City avenue",R.drawable.food2,false));
+        dishes.add(new DishModel("Royal food court","Chinese , Indian food","100-2 south Manchester City avenue",R.drawable.food3,false));
+        dishes.add(new DishModel("Sea food","Chinese , Indian food","100-2 south Manchester City avenue",R.drawable.food4,true));
+        dishes.add(new DishModel("Pizza mega","Chinese , Indian food","100-2 south Manchester City avenue",R.drawable.food6,true));
+        dishes.add(new DishModel("Fakhitas double","Algerian , Indian food","100-2 south Manchester City avenue",R.drawable.food7,true));
+        // Adapter init
+        DishHorizontalAdapter adapter = new DishHorizontalAdapter(MainActivity.this,dishes);
+
+        dishList.setAdapter(adapter);
+
+        //Layout manager (how the list appears)
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(RecyclerView.HORIZONTAL);
+
+        dishList.setLayoutManager(manager);
+
+
 
 
 
@@ -195,8 +206,7 @@ public class MainActivity extends AppCompatActivity {
          Elements.add(new BottomBarElement(home_icon,home_text));
          Elements.add(new BottomBarElement(cart_icon,cart_text));
          Elements.add(new BottomBarElement(add_icon,addTxt));
-         food=findViewById(R.id.foodImage);
-
+         dishList= findViewById(R.id.dish_list);
          filterBtn=findViewById(R.id.filterBtn);
 
     }
