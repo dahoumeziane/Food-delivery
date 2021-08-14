@@ -3,8 +3,10 @@ package com.dahou.fooddelivery;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dahou.fooddelivery.Adapter.DishHorizontalAdapter;
+import com.dahou.fooddelivery.Adapter.DishVerticalAdapter;
 import com.dahou.fooddelivery.model.DishModel;
 
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     TextView home_text , cart_text,addTxt;
     ArrayList<BottomBarElement> Elements ;
     TextView filterBtn ;
-    RecyclerView dishList;
+    RecyclerView dishList,verticalDishList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,17 +134,32 @@ public class MainActivity extends AppCompatActivity {
         dishes.add(new DishModel("Sea food","Chinese , Indian food","100-2 south Manchester City avenue",R.drawable.food4,true));
         dishes.add(new DishModel("Pizza mega","Chinese , Indian food","100-2 south Manchester City avenue",R.drawable.food6,true));
         dishes.add(new DishModel("Fakhitas double","Algerian , Indian food","100-2 south Manchester City avenue",R.drawable.food7,true));
+
         // Adapter init
         DishHorizontalAdapter adapter = new DishHorizontalAdapter(MainActivity.this,dishes);
 
         dishList.setAdapter(adapter);
 
         //Layout manager (how the list appears)
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
+
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(RecyclerView.HORIZONTAL);
 
         dishList.setLayoutManager(manager);
+
+
+        //Second List binding
+
+        DishVerticalAdapter adapter2 = new DishVerticalAdapter(MainActivity.this,dishes);
+        verticalDishList.setAdapter(adapter2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+
+       // GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+        verticalDishList.setLayoutManager(layoutManager);
 
 
 
@@ -208,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
          Elements.add(new BottomBarElement(add_icon,addTxt));
          dishList= findViewById(R.id.dish_list);
          filterBtn=findViewById(R.id.filterBtn);
+         verticalDishList=findViewById(R.id.dish_list_vertical);
 
     }
 

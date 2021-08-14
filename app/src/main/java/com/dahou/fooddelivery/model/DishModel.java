@@ -3,14 +3,14 @@ package com.dahou.fooddelivery.model;
 public class DishModel {
     private String name,category,address;
     private int image;
-    private boolean state;
+    private boolean open;
 
     public DishModel(String name, String category, String address, int image, boolean state) {
         this.name = name;
         this.category = category;
         this.address = address;
         this.image = image;
-        this.state = state;
+        this.open = state;
     }
 
     public String getName() {
@@ -29,7 +29,7 @@ public class DishModel {
         return image;
     }
 
-    public boolean isState() {
-        return state;
+    public boolean isOpen() {
+        return open;
     }
 }
